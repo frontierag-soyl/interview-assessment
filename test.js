@@ -2,7 +2,8 @@
 "use strict";
 
 //Class to store and sort a list of numeric years (4 digit)
-var YearData = (function() {
+//stop YearData from being redefined.
+const YearData = (function() {
   //Constructor
   function YearData() {
     this.yearDataList = [];
