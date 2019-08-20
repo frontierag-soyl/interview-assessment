@@ -16,8 +16,8 @@ const YearData = (function() {
 
     if (yearToAdd instanceof Array) {
       let inLength = yearToAdd.length;
-      //The below sort would convert the array items into strings and then sort. passed in comparison function
-      yearToAdd.sort(decendingSort);
+      //The below sort would convert the array items into strings and then sort. passed in comparison function. removed.
+      //   yearToAdd.sort(decendingSort);
 
       for (let i = 0; i < inLength; i++) {
         //check for two digit date input
@@ -27,6 +27,7 @@ const YearData = (function() {
 
         if (this.yearDataList.indexOf(yearToAdd[i]) < 0) {
           //Not in list yet, so add to start of list
+          // Array.push() adds items to the end of the list.
           this.yearDataList.push(yearToAdd[i]);
         }
       }
@@ -43,10 +44,8 @@ const YearData = (function() {
       this.yearDataList[i] = parseInt(this.yearDataList[i]);
     }
 
-    //Sort the list using a number compare
-    // this.yearDataList.sort(decendingSort);
-
-    return this.yearDataList;
+    //Sort the list on return
+    return this.yearDataList.sort(decendingSort);
   };
 
   //Return a copy of the array
