@@ -12,14 +12,13 @@ var YearData = (function() {
   YearData.prototype.addToYearList = function(yearToAdd) {
     // No scoping issue. I didn't think it was necessary to scope this to the function.
     // var _this = this;
-    var i, inLength;
 
     if (yearToAdd instanceof Array) {
-      inLength = yearToAdd.length;
+      let inLength = yearToAdd.length;
       //FIXME: the below sort would convert the array items into strings and then sort. Used comparison function
       yearToAdd.sort(decendingSort);
 
-      for (i = 0; i < inLength; i++) {
+      for (let i = 0; i < inLength; i++) {
         //check for two digit date input
         if (yearToAdd[i] < 100) {
           yearToAdd[i] = shortToFullYear(yearToAdd[i]);
@@ -39,7 +38,7 @@ var YearData = (function() {
     }
 
     //Make sure everything is an integer
-    for (i = 0; i < this.yearDataList.length; i++) {
+    for (let i = 0; i < this.yearDataList.length; i++) {
       this.yearDataList[i] = parseInt(this.yearDataList[i]);
     }
 
@@ -57,10 +56,10 @@ var YearData = (function() {
   //Use the underlying year data list to return a contiguous list of years up until this year
   //ie. fill in gaps and add in next year
   YearData.prototype.getContiguousYearDataListWithExtension = function() {
-    var retArray = [];
-    var i, minYear, maxYear;
-    var timeNow = new Date();
-    var nextYear = timeNow.getFullYear() + 1;
+    const retArray = [];
+    let minYear, maxYear;
+    let timeNow = new Date();
+    let nextYear = timeNow.getFullYear() + 1;
 
     minYear = Math.min.apply(Math, this.yearDataList);
     maxYear = Math.max.apply(Math, this.yearDataList);
@@ -70,7 +69,7 @@ var YearData = (function() {
       maxYear = nextYear;
     }
     if (minYear > 0 && maxYear - minYear < 100) {
-      for (i = maxYear; i >= minYear; i--) {
+      for (let i = maxYear; i >= minYear; i--) {
         retArray.push(i);
       }
     }
