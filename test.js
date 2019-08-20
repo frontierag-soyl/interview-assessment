@@ -1,4 +1,4 @@
-// This could be moved into the annomous function, as it stands it applies to whole file.
+// This could be moved into the anonymous function, as it stands it applies to whole file.
 "use strict";
 
 //Class to store and sort a list of numeric years (4 digit)
