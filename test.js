@@ -15,17 +15,26 @@ var YearData = (function() {
 
     if (yearToAdd instanceof Array) {
       inLength = yearToAdd.length;
-      //FIXME: the below sort would convert the array items into strings and then sort. Removed.
+      //FIXME: the below sort would convert the array items into strings and then sort. Used comparison function
       yearToAdd.sort(decendingSort);
 
       for (i = 0; i < inLength; i++) {
+        //check for two digit date input
+        if (yearToAdd[i] < 100) {
+          yearToAdd[i] = shortToFullYear(yearToAdd[i]);
+        }
+
         if (_this.yearDataList.indexOf(yearToAdd[i]) < 0) {
           //Not in list yet, so add to start of list
           _this.yearDataList.push(yearToAdd[i]);
         }
       }
     } else {
-      _this.yearDataList.push(yearToAdd);
+      if (yearToAdd < 100) {
+        _this.yearDataList.push(shortToFullYear(yearToAdd));
+      } else {
+        _this.yearDataList.push(yearToAdd);
+      }
     }
 
     //Make sure everything is an integer
@@ -73,6 +82,11 @@ var YearData = (function() {
   // this comparison function passed into the the sort methods above; decending the order.
   function decendingSort(a, b) {
     return b - a;
+  }
+
+  // convert short year into 4 digit year
+  function shortToFullYear(year) {
+    return year + 2000;
   }
 
   return YearData;
