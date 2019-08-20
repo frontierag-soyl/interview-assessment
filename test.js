@@ -57,6 +57,7 @@ var YearData = (function() {
   //ie. fill in gaps and add in next year
   YearData.prototype.getContiguousYearDataListWithExtension = function() {
     const retArray = [];
+    // Used let because the values change on each test for min + max year
     let minYear, maxYear;
     let timeNow = new Date();
     let nextYear = timeNow.getFullYear() + 1;
