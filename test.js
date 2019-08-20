@@ -1,13 +1,17 @@
 // This could be moved into the anonymous function, as it stands it applies to whole file.
 "use strict";
 
+/* final Comments, I tried to refactor the YearData into a base class, 
+and have UseYearData extend it so when it's called in the test,
+the methods are refernced rather then duplicated into memory */
+
 //Class to store and sort a list of numeric years (4 digit)
 //stop YearData from being redefined.
 const YearData = (function() {
   //Constructor
-  function YearData() {
-    this.yearDataList = [];
-  }
+  function YearData() {}
+
+  //   YearData.prototype.yearDataList = [];
 
   //Add either an array of year or a single year to the associative array or year strings
   YearData.prototype.addToYearList = function(yearToAdd) {
@@ -90,5 +94,13 @@ const YearData = (function() {
     return year + 2000;
   }
 
-  return YearData;
+  function UseYearData() {
+    this.yearDataList = [];
+  }
+  UseYearData.prototype = new YearData();
+  //   UseYearData.prototype.constructor = YearData.prototype;
+
+  console.log(UseYearData.prototype);
+
+  return UseYearData;
 })();
