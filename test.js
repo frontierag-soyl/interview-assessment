@@ -16,7 +16,7 @@ const YearData = (function() {
 
     if (yearToAdd instanceof Array) {
       let inLength = yearToAdd.length;
-      //FIXME: the below sort would convert the array items into strings and then sort. Used comparison function
+      //The below sort would convert the array items into strings and then sort. passed in comparison function
       yearToAdd.sort(decendingSort);
 
       for (let i = 0; i < inLength; i++) {
