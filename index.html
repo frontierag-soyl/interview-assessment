@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.css"/>
+        <script src="https://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.js"></script>
+        <script src="https://cdn.jsdelivr.net/jasmine/1.3.1/jasmine-html.js"></script>
+        <script src="test.js"></script>
+    </head>
+    <body>
+        <script>
+
+            describe('YearData Initialisation', function () {
+                it('Single item', function () {
+                    var yd = new YearData();
+                    yd.addToYearList(2010);
+                    expect(yd.getYearDataList()).toEqual([2010]);
+                });
+
+                it('Another Single item', function () {
+                    var yd = new YearData();
+                    yd.addToYearList('2010');
+                    expect(yd.getYearDataList()).toEqual([2010]);
+                });
+
+                it('Short year number', function () {
+                    var yd = new YearData();
+                    yd.addToYearList(10);
+                    expect(yd.getYearDataList()).toEqual([2010]);
+                });
+
+                it('Multiple items', function () {
+                    var yd = new YearData();
+                    yd.addToYearList([2010,2014]);
+                    expect(yd.getYearDataList()).toEqual([2014,2010]);
+                });
+            });
+
+            describe('YearData Gap filling', function () {
+
+                it('Single item', function () {
+                    var yd = new YearData();
+                    yd.addToYearList(2016);
+                    expect(yd.getContiguousYearDataListWithExtension()).toEqual([2020,2019,2018,2017,2016]);
+                });
+
+                it('Multiple items', function () {
+                    var yd = new YearData();
+                    yd.addToYearList([2014,2016]);
+                    expect(yd.getContiguousYearDataListWithExtension()).toEqual([2020,2019,2018,2017,2016,2015,2014]);
+                });
+            });
+
+            (function(){
+                const env = jasmine.getEnv();
+                env.addReporter( new jasmine.HtmlReporter() );
+                env.execute();
+            }());
+
+        </script>
+    </body>
+</html>
