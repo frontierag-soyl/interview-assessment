@@ -10,7 +10,8 @@ var YearData = (function() {
 
   //Add either an array of year or a single year to the associative array or year strings
   YearData.prototype.addToYearList = function(yearToAdd) {
-    var _this = this;
+    // No scoping issue. I didn't think it was necessary to scope this to the function.
+    // var _this = this;
     var i, inLength;
 
     if (yearToAdd instanceof Array) {
@@ -24,28 +25,28 @@ var YearData = (function() {
           yearToAdd[i] = shortToFullYear(yearToAdd[i]);
         }
 
-        if (_this.yearDataList.indexOf(yearToAdd[i]) < 0) {
+        if (this.yearDataList.indexOf(yearToAdd[i]) < 0) {
           //Not in list yet, so add to start of list
-          _this.yearDataList.push(yearToAdd[i]);
+          this.yearDataList.push(yearToAdd[i]);
         }
       }
     } else {
       if (yearToAdd < 100) {
-        _this.yearDataList.push(shortToFullYear(yearToAdd));
+        this.yearDataList.push(shortToFullYear(yearToAdd));
       } else {
-        _this.yearDataList.push(yearToAdd);
+        this.yearDataList.push(yearToAdd);
       }
     }
 
     //Make sure everything is an integer
-    for (i = 0; i < _this.yearDataList.length; i++) {
-      _this.yearDataList[i] = parseInt(_this.yearDataList[i]);
+    for (i = 0; i < this.yearDataList.length; i++) {
+      this.yearDataList[i] = parseInt(this.yearDataList[i]);
     }
 
     //Sort the list using a number compare
-    // _this.yearDataList.sort(decendingSort);
+    // this.yearDataList.sort(decendingSort);
 
-    return _this.yearDataList;
+    return this.yearDataList;
   };
 
   //Return a copy of the array
